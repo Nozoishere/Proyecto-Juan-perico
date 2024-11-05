@@ -19,6 +19,11 @@ def registrarclie():
         direccion = request.form['direccion']
         edad = request.form['edad']
 
+        # Validar el RUT
+        if not validar_rut(rut_clie):
+            flash('El RUT ingresado no es válido')
+            return redirect(url_for('registro_bp.registroclie'))
+
         # Verificar si el rut_clie ya está registrado
         cliente = Cliente.query.filter_by(rut_clie=rut_clie).first()
 
