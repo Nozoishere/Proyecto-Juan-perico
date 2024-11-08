@@ -485,3 +485,110 @@ nav a {
 nav a:hover {
     color: #0056b3; /* Color del texto al pasar el ratón */
 }
+
+/* Estilo para el contenedor del formulario */
+.contenedorregistro {
+    background: #ffffff; /* Fondo blanco */
+    color: #000; /* Color de texto negro */
+    padding: 30px; /* Espaciado interno */
+    border: 2px solid #8B4513; /* Borde marrón */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    max-width: 500px; /* Ancho máximo */
+    margin: 0 auto; /* Centrar horizontalmente */
+}
+
+/* Estilo para los encabezados dentro del formulario */
+.contenedorregistro h2 {
+    font-size: 1.5em; /* Tamaño de fuente */
+    color: #8B4513; /* Color del título */
+    text-align: center; /* Centrar texto */
+    margin-bottom: 20px; /* Margen inferior */
+}
+
+/* Estilo para las etiquetas del formulario */
+.form-label {
+    font-weight: bold; /* Negrita */
+    color: #8B4513; /* Color marrón */
+}
+
+/* Estilo para los campos de entrada */
+.form-control {
+    border: 1px solid #8B4513; /* Borde marrón */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    transition: border-color 0.3s; /* Transición suave */
+}
+
+/* Estilo para los campos de entrada al enfocar */
+.form-control:focus {
+    border-color: #6c757d; /* Color de borde al enfocar */
+    box-shadow: 0 0 5px rgba(108, 117, 125, 0.5); /* Sombra al enfocar */
+}
+
+/* Estilo para el botón de registro */
+button[type="submit"] {
+    background-color: #8B4513; /* Color de fondo marrón */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 1.1em; /* Tamaño de fuente */
+    cursor: pointer; /* Cursor de puntero */
+    width: 100%; /* Ancho completo */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+/* Efecto al pasar el ratón sobre el botón */
+button[type="submit"]:hover {
+    background-color: #6c4f3d; /* Color más oscuro al pasar el ratón */
+}
+
+/* Estilo para el enlace de volver al inicio */
+a.btn {
+    margin-top: 10px; /* Margen superior */
+    display: inline-block; /* Mostrar en línea */
+    background-color: #007bff; /* Color de fondo azul */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    text-decoration: none; /* Sin subrayado */
+}
+
+/* Efecto al pasar el ratón sobre el enlace */
+a.btn:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el ratón */
+}
+
+/* estilo.css */
+.alert {
+    margin-bottom: 1rem; /* Espacio inferior entre alertas y otros elementos */
+    border-radius: 0.5rem; /* Bordes redondeados */
+    padding: 1rem; /* Espaciado interno */
+}
+
+.alert-success {
+    background-color: #d4edda; /* Color de fondo para alertas exitosas */
+    color: #155724; /* Color de texto */
+}
+
+.alert-danger {
+    background-color: #f8d7da; /* Color de fondo para alertas de error */
+    color: #721c24; /* Color de texto */
+}
+
+.alert-warning {
+    background-color: #fff3cd; /* Color de fondo para alertas de advertencia */
+    color: #856404; /* Color de texto */
+}
+
+.alert-info {
+    background-color: #d1ecf1; /* Color de fondo para alertas informativas */
+    color: #0c5460; /* Color de texto */
+}
+
+.alert-dismissible .btn-close {
+    position: absolute; /* Posiciona el botón de cerrar */
+    right: 1rem; /* Espacio desde la derecha */
+    top: 0.5rem; /* Espacio desde la parte superior */
+}
