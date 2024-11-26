@@ -163,7 +163,7 @@ header {
 .primary-button {
     background-color: #8B4513; /* Color de fondo */
     border-radius: 8px;
-    border: none;
+    border: 2px solid #000;
     color: white; /* Color del texto */
     width: 100%;
     cursor: pointer;
@@ -452,8 +452,8 @@ h2 {
     font-family: 'Arial', sans-serif;
     font-size: 1em;
     color: #fff; /* Color del texto */
-    background-color: #925e38; /* Color de fondo */
-    border: none; /* Sin borde */
+    background-color: #925e38!important; /* Color de fondo */
+    border: 1px solid #000 !important; /* Borde simple delgado */
     border-radius: 5px; /* Bordes redondeados */
     padding: 10px 20px; /* Espaciado interno */
     cursor: pointer; /* Cursor de puntero al pasar sobre el botón */
