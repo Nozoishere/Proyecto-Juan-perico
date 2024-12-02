@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
 from app import db
 from app.models.cliente import Cliente
 from app.routes.rut import validar_rut  # Importar la función validar_rut
@@ -21,26 +21,21 @@ def registrarclie():
 
         # Validar el RUT
         if not validar_rut(rut_clie):
-            flash('El RUT ingresado no es válido', 'danger')  # Aquí se añade la categoría 'danger'
-            return redirect(url_for('registro_bp.registroclie'))
-
+            return jsonify({'status': 'error', 'title': 'Error', 'message': 'El RUT ingresado no es válido'})
 
         # Verificar si el rut_clie ya está registrado
         cliente = Cliente.query.filter_by(rut_clie=rut_clie).first()
         if cliente:
-            flash('El RUT ya está registrado', 'warning')
-            return redirect(url_for('registro_bp.registroclie'))
+            return jsonify({'status': 'error', 'title': 'Error', 'message': 'El RUT ya está registrado'})
 
         # Verificar si el correo ya está registrado
         cliente_correo = Cliente.query.filter_by(correo=correo).first()
         if cliente_correo:
-            flash('El correo electrónico ya está registrado', 'warning')
-            return redirect(url_for('registro_bp.registroclie'))
-        
-         # Verificar si la edad es negativa
+            return jsonify({'status': 'error', 'title': 'Error', 'message': 'El correo electrónico ya está registrado'})
+
+        # Verificar si la edad es negativa
         if int(edad) < 0:
-            flash('La edad no puede ser negativa', 'danger')
-            return redirect(url_for('registro_bp.registroclie'))
+            return jsonify({'status': 'error', 'title': 'Error', 'message': 'La edad no puede ser negativa'})
 
         # Crear nuevo cliente
         nuevo_cliente = Cliente(
@@ -53,6 +48,6 @@ def registrarclie():
         )
         db.session.add(nuevo_cliente)
         db.session.commit()
-        flash('Registrado Exitosamente')
 
-        return redirect(url_for('index_bp.index'))
+        # Mensaje de éxito
+        return jsonify({'status': 'success', 'title': 'Éxito', 'message': 'Registrado exitosamente'})
