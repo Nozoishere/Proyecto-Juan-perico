@@ -592,3 +592,103 @@ a.btn:hover {
     right: 1rem; /* Espacio desde la derecha */
     top: 0.5rem; /* Espacio desde la parte superior */
 }
+
+/*color accordion-button*/
+.accordion-button {
+    background-color: #925e38; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: 1px solid #000; /* Borde */
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #925e38; /* Color cuando está expandido */
+    color: white;
+}
+
+.accordion-button:hover {
+    background-color: #7b4c2e; /* Color de fondo al pasar el ratón */
+    color: white;
+}
+
+
+/* Shopping cart, Estilos para acomodar los objetos dentro del carrito de compra, etiquetas -> Carrito , Carro , items , compra*/
+.shopping-cart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #7b4c2e;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+
+figure {
+    margin: 0;
+    width: 50px;
+    height: auto;
+}
+
+.item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 10px; /* Desplaza todo el contenido hacia la derecha */
+}
+
+.item-name, .item-price {
+    margin: 0;
+    font-size: 14px;
+}
+
+.item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.quantity-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.quantity-container button {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    padding: 5px;
+    margin: 0;
+}
+
+.quantity-input {
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #b6743a;
+    padding: 5px;
+    margin: 0;
+}
+
+.remove-item-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.remove-item-form button {
+    width: 100%;
+    font-size: 12px;
+    padding: 5px;
+}
+
+
+
