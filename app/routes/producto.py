@@ -27,6 +27,12 @@ def agregar_producto():
             marca = request.form['marca']
             codigo_categoria = request.form['codigo_categoria']
 
+            # Validar que el precio sea un número positivo
+            if not precio.isdigit() or float(precio) <= 0:
+                flash('El precio debe ser un número positivo.', 'error')
+                return redirect(url_for('producto_bp.mostrar_producto'))
+
+            #
             if 'imagen' in request.files:
                 imagen = request.files['imagen']
                 if imagen.filename != '':
@@ -93,21 +99,29 @@ def modificar_producto():
             if not producto:
                 flash('Producto no encontrado.', 'error')
                 return redirect(url_for('producto_bp.mostrar_producto'))
-
+            
             nombre_producto = request.form.get('nombre_producto_mod')
             precio = request.form.get('precio_mod')
             marca = request.form.get('marca_mod')
             codigo_categoria = request.form.get('codigo_categoria_mod')
             imagen = request.files.get('imagen_mod')
-
+            
             if nombre_producto:
                 producto.nombre = nombre_producto
+
             if precio:
-                producto.precio = precio
+                # Validar que el precio sea un número positivo
+                if not precio.isdigit() or float(precio) <= 0:
+                    flash('El precio debe ser un número positivo.', 'error')
+                    return redirect(url_for('producto_bp.mostrar_producto'))
+                producto.precio = float(precio)  # Asignar el precio validado
+
             if marca:
                 producto.marca = marca
+
             if codigo_categoria:
                 producto.categoria = codigo_categoria
+
             if imagen and imagen.filename != '':
                 imagen_nombre = secure_filename(imagen.filename)
                 imagen_path = os.path.join(current_app.config['UPLOAD_FOLDER'], imagen_nombre)
@@ -122,3 +136,4 @@ def modificar_producto():
         except SQLAlchemyError as e:
             flash('Error al modificar el producto.', 'error')
             return redirect(url_for('producto_bp.mostrar_producto'))
+
