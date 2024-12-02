@@ -73,25 +73,27 @@
                             <figure>
                                 <img src="{{ item['imagen'] }}" alt="{{ item['nombre'] }}">
                             </figure>
-                            <p>{{ item['nombre'] }}</p>
-                            <p>Precio unitario: ${{ item['precio'] }}</p>
-                            <p>Cantidad: {{ item['cantidad'] }}</p>
-                            <form
-                                action="{{ url_for('carrito_bp.increase_quantity', codigo_prod=item['codigo_prod']) }}"
-                                method="POST" style="display: inline-block;">
-                                <button type="submit" class="btn btn-success">+</button>
-                            </form>
-                            <form
-                                action="{{ url_for('carrito_bp.decrease_quantity', codigo_prod=item['codigo_prod']) }}"
-                                method="POST" style="display: inline-block;">
-                                <button type="submit" class="btn btn-warning">-</button>
-                            </form>
-                            <form
-                                action="{{ url_for('carrito_bp.remove_from_cart', codigo_prod=item['codigo_prod']) }}"
-                                method="POST" style="display: inline-block;">
+                            <div class="item-details">
+                                <p class="item-name">{{ item['nombre'] }}</p>
+                                <p class="item-price">Precio unitario: ${{ item['precio'] }}</p>
+                                <div class="item-quantity">
+                                    <p>Cantidad:</p>
+                                    <div class="quantity-container">
+                                        <form action="{{ url_for('carrito_bp.increase_quantity', codigo_prod=item['codigo_prod']) }}" method="POST">
+                                            <button type="submit" class="btn btn-success">+</button>
+                                        </form>
+                                        <input type="text" class="quantity-input" value="{{ item['cantidad'] }}" readonly>
+                                        <form action="{{ url_for('carrito_bp.decrease_quantity', codigo_prod=item['codigo_prod']) }}" method="POST">
+                                            <button type="submit" class="btn btn-warning">-</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <form action="{{ url_for('carrito_bp.remove_from_cart', codigo_prod=item['codigo_prod']) }}" method="POST" class="remove-item-form">
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
                         </div>
+
                         {% endfor %}
 
                         <div class="subtotal-total">

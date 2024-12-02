@@ -91,7 +91,7 @@ def checkout():
         # Obtener los datos necesarios del carrito y del cliente (puedes obtenerlo desde la sesión)
         cart = session.get('cart', [])
         total_pedido = session.get('total_pedido', 0)
-        rut_cliente = session.get('rut_cliente', None)  # Asegúrate de tener el rut del cliente
+        rut_cliente = session.get('rut_cliente', session['rut_clie'])  # Asegúrate de tener el rut del cliente
 
         # Crear un nuevo pedido
         nuevo_pedido = Pedido(total=total_pedido, rut_cliente=rut_cliente, estado=0)  # Ajusta los valores según tu lógica
