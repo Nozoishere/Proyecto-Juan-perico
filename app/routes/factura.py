@@ -29,52 +29,52 @@ def agregar_factura():
         # Paso 1: Validar RUT del proveedor y verificar existencia en la tabla de proveedores
         rut_valido = validar_rut(rut_proveedor)
         if not rut_valido:
-            flash('Rut del proveedor inválido')
+            flash("El RUT ingresado no es válido.", "error")
             return redirect(url_for('factura_bp.mostrar_factura'))
 
         proveedor = Proveedor.query.filter_by(rut_prov=rut_proveedor).first()
         if not proveedor:
-            flash('Rut del proveedor no encontrado en la base de datos')
+            flash('Rut del proveedor no encontrado en la base de datos', "error")
             return redirect(url_for('factura_bp.mostrar_factura'))
 
         # Paso 2: Validar y verificar existencia de códigos de productos
         productos = []
         for codigo_prod in codigo_productos:
             if not codigo_prod.isdigit():
-                flash(f'Código de producto {codigo_prod} inválido')
+                flash(f'Código de producto {codigo_prod} inválido', "warning")
                 return redirect(url_for('factura_bp.mostrar_factura'))
 
             producto = Producto.query.filter_by(codigo_prod=int(codigo_prod)).first()
             if not producto:
-                flash(f'Producto con código {codigo_prod} no encontrado')
+                flash(f'Producto con código {codigo_prod} no encontrado', "error")
                 return redirect(url_for('factura_bp.mostrar_factura'))
             productos.append(producto)
 
         # Validar datos numéricos y fechas
         for cantidad, costo, vencimiento in zip(cantidad_productos, costo_productos, fecha_vencimientos):
             if not cantidad.isdigit():
-                flash(f'Cantidad {cantidad} inválida')
+                flash(f'Cantidad {cantidad} inválida', "error")
                 return redirect(url_for('factura_bp.mostrar_factura'))
             if not costo.replace('.', '', 1).isdigit():
-                flash(f'Costo {costo} inválido')
+                flash(f'Costo {costo} inválido', "error")
                 return redirect(url_for('factura_bp.mostrar_factura'))
             try:
                 datetime.strptime(vencimiento, '%Y-%m-%d')
             except ValueError:
-                flash(f'Fecha de vencimiento {vencimiento} inválida')
+                flash(f'Fecha de vencimiento {vencimiento} inválida', "error")
                 return redirect(url_for('factura_bp.mostrar_factura'))
 
         # Validar fecha de emisión
         try:
             fecha_emision_dt = datetime.strptime(fecha_emision, '%Y-%m-%d')
         except ValueError:
-            flash('Fecha de emisión inválida')
+            flash('Fecha de emisión inválida', "error")
             return redirect(url_for('factura_bp.mostrar_factura'))
 
         # Paso 3: Insertar datos en la tabla factura
         total_pago = sum(float(costo) * int(cantidad) for costo, cantidad in zip(costo_productos, cantidad_productos))
-        subtotal = total_pago / 1.19
-        impuestos_aplicables = '19'
+        subtotal = total_pago / 1.19  # Asegúrate de que el impuesto siempre sea un porcentaje fijo
+        impuestos_aplicables = '19'  # Ajustar en caso de que el impuesto varíe
 
         nueva_factura = Factura(
             total_pago=str(total_pago),
@@ -113,7 +113,7 @@ def agregar_factura():
 
         db.session.commit()
 
-        flash('Factura registrada exitosamente')
+        flash('Factura registrada exitosamente', "success")
         return redirect(url_for('factura_bp.mostrar_factura'))
 
     except SQLAlchemyError as e:
