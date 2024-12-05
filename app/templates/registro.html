@@ -39,53 +39,53 @@
                     </div>
                     <div class="mb-3">
                         <label for="edad" class="form-label">Edad</label>
-                        <input type="number" class="form-control" name="edad" placeholder="Edad" min="0" required>                
+                        <input type="number" class="form-control" name="edad" placeholder="Edad" min="0" required>
                     </div>
                     <button type="submit" class="button">Registrarse</button>
                     <a href="{{ url_for('index_bp.index') }}" class="btn">Volver al Inicio</a>
                 </form>
             </div>
         </div>
+    </div>
 
-        <!-- Bootstrap Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+6hC4np0JWIcUj1zDJw+Y7gtQo7lT" crossorigin="anonymous"></script>
-        <script>
-            // Capturar el evento submit del formulario
-            document.getElementById('formularioRegistro').addEventListener('submit', function(event) {
-                event.preventDefault(); // Evitar el envío del formulario por defecto
-                
-                const formData = new FormData(this); // Capturar los datos del formulario
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+6hC4np0JWIcUj1zDJw+Y7gtQo7lT" crossorigin="anonymous"></script>
+    <script>
+        // Capturar el evento submit del formulario
+        document.getElementById('formularioRegistro').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar el envío del formulario por defecto
+            
+            const formData = new FormData(this); // Capturar los datos del formulario
 
-                fetch('/registrarclie', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    Swal.fire({
-                        icon: data.status,
-                        title: data.title,
-                        text: data.message,
-                        timer: 3000,
-                        showConfirmButton: false
-                    }).then(() => {
-                        if (data.status === 'success') {
-                            window.location.href = "{{ url_for('index_bp.index') }}";
-                        }
-                    });
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Hubo un error en el registro',
-                        timer: 3000,
-                        showConfirmButton: false
-                    });
+            fetch('/registrarclie', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                Swal.fire({
+                    icon: data.status,
+                    title: data.title,
+                    text: data.message,
+                    timer: 3000,
+                    showConfirmButton: false
+                }).then(() => {
+                    if (data.status === 'success') {
+                        window.location.href = "{{ url_for('index_bp.index') }}";
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un error en el registro',
+                    timer: 3000,
+                    showConfirmButton: false
                 });
             });
-        </script>
-    </div>
+        });
+    </script>
 </body>
 </html>

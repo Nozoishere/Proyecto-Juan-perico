@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
 from app import db
 from app.models.cliente import Cliente
-from app.routes.rut import validar_rut  # Importar la función validar_rut
+from app.routes.rut import validar_rut
 
 registro_bp = Blueprint('registro_bp', __name__)
 

@@ -592,3 +592,8 @@ a.btn:hover {
     right: 1rem; /* Espacio desde la derecha */
     top: 0.5rem; /* Espacio desde la parte superior */
 }
+
+.swal2-popup .swal2-title {
+    background-color: #d4edda !important;
+    color: #ffffff !important;
+}
